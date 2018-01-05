@@ -1,0 +1,150 @@
+{
+  "project_info": {
+    "project_number": "834538748370",
+    "firebase_url": "https://crabwork-30111997.firebaseio.com",
+    "project_id": "crabwork-30111997",
+    "storage_bucket": "crabwork-30111997.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834538748370:android:5f8393b7e8b7bf34",
+        "android_client_info": {
+          "package_name": "habig.crabwork.crabwork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834538748370-p8ibob3po2eliful3mguiqh930m3d3g4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "habig.crabwork.crabwork",
+            "certificate_hash": "19a355e9e321d0c53f77caa73a6d111226b42960"
+          }
+        },
+        {
+          "client_id": "834538748370-epsj823kv0ufet0devul3jb7ufm3na86.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "834538748370-okrfv7fkknnuq2869e8t4a4autidbfh7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbRrSWGP_da0AXe6cLA3lDdwB9wWf9E9o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834538748370:android:1d580b824036e42d",
+        "android_client_info": {
+          "package_name": "com.happycity.project.hafood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834538748370-85urv2a735afib7otrla9uj6jv3erdat.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.happycity.project.hafood",
+            "certificate_hash": "8b1bb011d280208669b75582d90a303d4ac33014"
+          }
+        },
+        {
+          "client_id": "834538748370-epsj823kv0ufet0devul3jb7ufm3na86.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "834538748370-okrfv7fkknnuq2869e8t4a4autidbfh7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbRrSWGP_da0AXe6cLA3lDdwB9wWf9E9o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834538748370-epsj823kv0ufet0devul3jb7ufm3na86.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834538748370:android:3b6f6d5dcb6a9845",
+        "android_client_info": {
+          "package_name": "com.happycity.project.happydriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834538748370-j5r6ur8q4v5ccjeus8t2ndllcec6q5rv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.happycity.project.happydriver",
+            "certificate_hash": "8b1bb011d280208669b75582d90a303d4ac33014"
+          }
+        },
+        {
+          "client_id": "834538748370-epsj823kv0ufet0devul3jb7ufm3na86.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "834538748370-okrfv7fkknnuq2869e8t4a4autidbfh7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbRrSWGP_da0AXe6cLA3lDdwB9wWf9E9o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834538748370-epsj823kv0ufet0devul3jb7ufm3na86.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
