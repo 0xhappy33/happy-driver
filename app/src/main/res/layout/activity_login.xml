@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bus"
-    tools:context="com.happycity.project.happydriver.MainActivity">
+    android:id="@+id/rootRegisterLayout"
+    tools:context="com.happycity.project.happydriver.ui.Login.LoginActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -16,14 +17,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
-            android:text="HAPPY DRIVER"
+            android:text="@string/happy_driver"
             android:textSize="36sp"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:text="PARTNER"
+            android:text="@string/partner"
             android:textSize="20sp"
             android:textAlignment="center"
             android:textColor="@android:color/white"
@@ -36,7 +37,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="LOOKING FOR THE RIDER APP"
+        android:text="@string/looking_for_the_rider_app"
         android:textSize="12sp"
         android:textColor="@color/colorBottomText"
         android:textAlignment="center"
@@ -51,20 +52,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-            android:text="SIGN IN"
+            android:id="@+id/btnSignIn"
+            android:text="@string/sign_in"
             android:layout_weight="1"
             android:layout_marginRight="6dp"
             android:layout_width="0dp"
             android:textColor="@android:color/white"
             android:background="@android:color/holo_blue_dark"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp" />
         <Button
-            android:text="SIGN UP"
+            android:id="@+id/btnSignUp"
+            android:text="@string/sign_up"
             android:layout_weight="1"
             android:layout_marginRight="6dp"
             android:layout_width="0dp"
             android:textColor="@android:color/white"
             android:background="@android:color/darker_gray"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp" />
     </LinearLayout>
 </RelativeLayout>
