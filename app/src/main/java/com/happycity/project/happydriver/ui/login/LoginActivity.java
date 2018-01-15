@@ -1,7 +1,8 @@
-package com.happycity.project.happydriver.ui.Login;
+package com.happycity.project.happydriver.ui.login;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -20,11 +21,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.happycity.project.happydriver.R;
-import com.happycity.project.happydriver.models.User;
+import com.happycity.project.happydriver.data.db.models.User;
+import com.happycity.project.happydriver.ui.map.HomeMapActivity;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dmax.dialog.SpotsDialog;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -40,6 +43,9 @@ public class LoginActivity extends AppCompatActivity {
     MaterialEditText  edtEmail, edtPassword, edtPhone, edtName;
     @BindView(R.id.rootRegisterLayout)
     RelativeLayout rootRegisterLayout;
+
+    android.app.AlertDialog waitingDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,8 +87,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
-                //
-                checkValidationInputFromUserInRegister();
+                waitingDialog = new SpotsDialog(LoginActivity.this);
+                waitingDialog.show();
+                checkValidationUserInputInLogin();
 
                 // sign in for user
                 signInToDatabase();
@@ -95,12 +102,26 @@ public class LoginActivity extends AppCompatActivity {
                 dialogInterface.dismiss();
             }
         });
-
         dialog.show();
     }
 
     private void signInToDatabase() {
-
+        firebaseAuth.signInWithEmailAndPassword(edtEmail.getText().toString(), edtPassword.getText().toString())
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        waitingDialog.dismiss();
+                        showSnackBarToReportForUser("Failed " + e.getMessage());
+                    }
+                })
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        waitingDialog.dismiss();
+                        startActivity(new Intent(LoginActivity.this, HomeMapActivity.class));
+                        finish();
+                    }
+                });
     }
 
     private void clickRegisterButton() {
@@ -132,7 +153,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
                 checkValidationInputFromUserInRegister();
-
                 // register new user
                 registerNewUserToFirebase();
             }
@@ -154,6 +174,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         saveUserToDatabase();
+                        showSnackBarToReportForUser("Sign up successful! let login to take happy driver");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -173,7 +194,7 @@ public class LoginActivity extends AppCompatActivity {
         user.setName(edtName.getText().toString().trim());
 
         // set user to key : key here is email
-        users.child(user.getEmail())
+        users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .setValue(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -208,6 +229,18 @@ public class LoginActivity extends AppCompatActivity {
         }
         if(edtPassword.getText().toString().length() < 6){
             showSnackBarToReportForUser("Password is too short");
+        }
+    }
+
+    private void checkValidationUserInputInLogin(){
+        if(TextUtils.isEmpty(edtEmail.getText().toString())){
+            showSnackBarToReportForUser("Please enter email address");
+        }
+        if(edtPassword.getText().toString().length() < 6){
+            showSnackBarToReportForUser("Password is too short");
+        }
+        if(TextUtils.isEmpty(edtPassword.getText().toString())){
+            showSnackBarToReportForUser("Please enter password");
         }
     }
 

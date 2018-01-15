@@ -9,4 +9,7 @@
     <string name="password">Password</string>
     <string name="name">Name</string>
     <string name="phone">Phone</string>
+    <string name="title_activity_home_map">Map</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
 </resources>

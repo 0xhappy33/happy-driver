@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bus"
     android:id="@+id/rootRegisterLayout"
-    tools:context="com.happycity.project.happydriver.ui.Login.LoginActivity">
+    tools:context="com.happycity.project.happydriver.ui.login.LoginActivity">
 
     <LinearLayout
         android:orientation="vertical"

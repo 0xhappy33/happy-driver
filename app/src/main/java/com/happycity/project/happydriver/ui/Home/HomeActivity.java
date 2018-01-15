@@ -1,7 +1,9 @@
 package com.happycity.project.happydriver.ui.Home;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.happycity.project.happydriver.R;
 
 public class HomeActivity extends AppCompatActivity {
 

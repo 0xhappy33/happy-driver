@@ -5,4 +5,8 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="colorBottomText">#6b6b76</color>
+
+    <color name="baseReleaseColor">#212121</color>
+    <color name="basePressColor">#fafafa</color>
+    <color name="ballReleaseColor">#9E9E9E</color>
 </resources>
