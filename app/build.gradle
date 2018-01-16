@@ -38,5 +38,6 @@ dependencies {
     compile 'com.github.d-max:spots-dialog:0.7@aar'
     compile 'com.github.glomadrian:MaterialAnimatedSwitch:1.1@aar'
     compile 'com.firebase:geofire-android:2.2.0'
+    compile 'com.github.zcweng:switch-button:0.0.3@aar'
 }
 apply plugin: 'com.google.gms.google-services'

@@ -14,8 +14,6 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
-import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.firebase.geofire.GeoFire;
@@ -40,6 +38,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.happycity.project.happydriver.R;
+import com.suke.widget.SwitchButton;
 
 public class HomeMapActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -63,7 +62,7 @@ public class HomeMapActivity extends FragmentActivity implements OnMapReadyCallb
 
     Marker mCurrent;
     GeoFire geoFire;
-    Switch aSwitch;
+    SwitchButton aSwitch;
 
     SupportMapFragment mapFragment;
 
@@ -80,8 +79,10 @@ public class HomeMapActivity extends FragmentActivity implements OnMapReadyCallb
 
         initView();
         changeStatusSwitch();
+
         drivers = FirebaseDatabase.getInstance().getReference("drivers");
         geoFire = new GeoFire(drivers);
+
         setupLocation();
     }
 
@@ -132,15 +133,15 @@ public class HomeMapActivity extends FragmentActivity implements OnMapReadyCallb
         mLocationRequest.setFastestInterval(FATEST_INTERVAL);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setSmallestDisplacement(DISPLACEMENT);
-
     }
 
-    private void buildGoogleApiClient() {
+    protected synchronized  void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
+        mGoogleApiClient.connect();
     }
 
     private boolean checkPlayServices() {
@@ -169,9 +170,9 @@ public class HomeMapActivity extends FragmentActivity implements OnMapReadyCallb
     }
 
     private void changeStatusSwitch() {
-        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        aSwitch.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isOnline) {
+            public void onCheckedChanged(SwitchButton view, boolean isOnline) {
                 if (isOnline){
                     startLocationUpdates();
                     displayLocation();
@@ -227,7 +228,7 @@ public class HomeMapActivity extends FragmentActivity implements OnMapReadyCallb
                                 mCurrent = mMap.addMarker(new MarkerOptions()
                                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.car_mini))
                                     .position(new LatLng(latitude, longtitude))
-                                    .title("You here"));
+                                    .title("You're here"));
 
                                 // Add zoom camera
                                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longtitude), 15.0f));
@@ -241,17 +242,17 @@ public class HomeMapActivity extends FragmentActivity implements OnMapReadyCallb
         }
     }
 
-    private void routeMarker(final Marker mCurrent, final int i, GoogleMap mMap) {
+    private void routeMarker(final Marker mCurrent, final float i, GoogleMap mMap) {
         final Handler handler = new Handler();
-        long start = SystemClock.uptimeMillis();
+        final long start = SystemClock.uptimeMillis();
         final float startRotation = mCurrent.getRotation();
-        long duration = 1500;
+        final long duration = 1500;
         final Interpolator interpolator = new LinearInterpolator();
         handler.post(new Runnable() {
             @Override
             public void run() {
-                long eclapsed = SystemClock.uptimeMillis();
-                float t = interpolator.getInterpolation((float) eclapsed);
+                long eclapsed = SystemClock.uptimeMillis() - start;
+                float t = interpolator.getInterpolation((float) eclapsed/duration);
                 float rot = t * i + (1 - t ) * startRotation;
                 mCurrent.setRotation(-rot > 180 ? rot / 2 : rot);
                 if (t<1.0){
@@ -264,9 +265,9 @@ public class HomeMapActivity extends FragmentActivity implements OnMapReadyCallb
     private void startLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(
                 this,
-                android.Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(
+                Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED){

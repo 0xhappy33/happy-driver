@@ -10,32 +10,28 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:background="@color/colorBottomText"
+        <android.support.v7.widget.CardView
+            app:cardElevation="10dp"
             android:layout_alignParentBottom="true"
-            android:orientation="horizontal"
-            android:weightSum="10"
-            android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <!--<com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch-->
-                <!--android:id="@+id/location_switch"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_weight="3"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--app:icon_release="@drawable/ic_location_off"-->
-                <!--app:icon_press="@drawable/ic_location_on"-->
-                <!--app:base_release_color="@color/baseReleaseColor"-->
-                <!--app:base_press_color="@color/basePressColor"-->
-                <!--app:ball_release_color="@color/ballReleaseColor"-->
-                <!--app:ball_press_color="@android:color/white"-->
-                <!--android:textOn="@string/on"-->
-                <!--android:textOff="@string/off"/>-->
-            <Switch
-                android:id="@+id/location_switch"
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:weightSum="10"
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.suke.widget.SwitchButton
+                    android:id="@+id/location_switch"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="7"
+                    android:layout_height="wrap_content"
+                    android:text="@string/find_driver"/>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
     </RelativeLayout>
 </fragment>
